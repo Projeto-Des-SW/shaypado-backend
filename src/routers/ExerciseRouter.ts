@@ -19,20 +19,50 @@ router.post(
         }
     }
 );
-router.get('/',
-            authValidator.validateToken,
+
+router.get( '/user/list-all-exercises', 
+            authValidator.validateToken, 
+            exerciseMiddlewares.validateGetAllExercisesByUser, 
             async (req, res, next) => {
                 try {
                     await getAllExercises(req, res);
                 } catch (error) {
                     next(error);
                 }
-            }              
+            }
 );
-router.get('/:id', getExerciseById);
-router.put('/:id', updateExercise);
-router.delete('/:id', deleteExercise);
-router.get('/user/:id', getAllExercises);
+
+router.get( '/:id', 
+            authValidator.validateToken, 
+            async (req, res, next) => {
+                try {
+                    await getExerciseById(req, res);
+                } catch (error) {
+                    next(error);
+                }
+            }  
+);
+
+router.put( '/:id', 
+            authValidator.validateToken, 
+            async (req, res, next) => {
+                try {
+                    await updateExercise(req, res);
+                } catch (error) {
+                    next(error);
+                }
+            }
+);
+router.delete( '/:id', 
+                authValidator.validateToken, 
+                async (req, res, next) => {
+                     try {
+                          await deleteExercise(req, res);
+                     } catch (error) {
+                          next(error);
+                     }
+                }
+);
 
 export default router;
 

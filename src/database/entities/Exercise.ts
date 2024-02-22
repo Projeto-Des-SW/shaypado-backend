@@ -2,7 +2,6 @@ import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColum
 import { User } from "./User";
 import { v4 as uuid } from 'uuid';
 import { WorkoutType } from "./WorkouType";
-import Joi from "joi";
 
 @Entity('exercise')
 export class Exercise {

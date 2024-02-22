@@ -68,6 +68,10 @@ export const getAllExercisesByUser = async (req: Request, res: Response) => {
     const userId = req.params.userId;
     try {
         const exercises = await exerciseService.getAllExercisesByUser(userId);
+        if (exercises.length === 0) {
+            res.status(404).json({ error: 'No exercises found for this user' });
+        }
+        
         res.json(exercises);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch exercises' });

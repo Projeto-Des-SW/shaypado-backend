@@ -8,4 +8,9 @@ export class ExerciseMiddlewares {
         req.body = exercise;
         next();
     }
+
+    public validateGetAllExercisesByUser: RequestHandler = async (req, res, next) => {
+        req.body.userId = req.headers.userId;
+        next();
+    }
 }

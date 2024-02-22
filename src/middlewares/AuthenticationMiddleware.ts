@@ -5,12 +5,10 @@ import * as jwt from "jsonwebtoken";
 
 export class AuthenticationValidation {
 
-    private passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>?])(?!.+(0123|1234|2345|3456|4567|5678|6789)).+$/;
-
     private registerSchema = Joi.object({
         name: Joi.string().required(),
         email: Joi.string().email().required(),
-        password: Joi.string().pattern(this.passwordRegex).required(),
+        password: Joi.string().required(),
         userType: Joi.string().valid('student', 'teacher').required(),
         weigth: Joi.string().optional(),
         height: Joi.string().optional(),
