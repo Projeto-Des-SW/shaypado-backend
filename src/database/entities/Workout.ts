@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, PrimaryColumn, Entity, PrimaryGeneratedColumn
 import { v4 as uuid } from 'uuid';
 import { WorkoutType } from './WorkouType';
 import { User } from './User';
+import { Exercise } from './Exercise';
 
 @Entity('workout')
 export class Workout {
@@ -26,6 +27,10 @@ export class Workout {
 
         @ManyToOne(() => User, user => user.id)
         user: User | null;
+
+        @ManyToMany(() => Exercise )
+        @JoinColumn({name: 'exercise_workout'})
+        exercises?: Exercise[];
 
         constructor() {
             this.id = uuid();

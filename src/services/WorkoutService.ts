@@ -9,6 +9,7 @@ export class WorkoutService {
     private workoutRepository = AppDataSource.getRepository(Workout);
     private workoutTypeRepository = AppDataSource.getRepository(WorkoutType);
     private userRepository = AppDataSource.getRepository(User);
+    exerciseRepository: any;
 
     async createWorkout(workoutData: WorkoutDTO): Promise<Workout> {
         const workoutType = await this.workoutTypeRepository.findOne({ where: { id: workoutData.workoutType } });
@@ -21,6 +22,11 @@ export class WorkoutService {
         newWorkout.day = workoutData.day ?? '';
         newWorkout.workoutType = workoutType;
         newWorkout.user = user;
+
+        if(workoutData.exercises) {
+            const exercises = await this.exerciseRepository.findByIds(workoutData.exercises);
+            newWorkout.exercises = exercises;
+        }
 
         return await this.workoutRepository.save(newWorkout);
 

@@ -2,6 +2,7 @@ import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColum
 import { User } from "./User";
 import { v4 as uuid } from 'uuid';
 import { WorkoutType } from "./WorkouType";
+import { Workout } from "./Workout";
 
 @Entity('exercise')
 export class Exercise {
@@ -24,8 +25,7 @@ export class Exercise {
     @ManyToOne(() => User, user => user.id)
     user: User | null;
 
-    @ManyToMany( () => WorkoutType, 
-                { cascade: true, onDelete: 'CASCADE' })
+    @ManyToMany( () => WorkoutType )
     @JoinTable({name: 'exercise_workout_type'})
     workoutTypes?: WorkoutType[];
 

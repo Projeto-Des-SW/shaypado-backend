@@ -6,6 +6,10 @@ export interface WorkoutDTO {
     day: string;
     workoutType: string;
     user: string;
+    exercises: string[];
 }
 
+export interface WorkoutTypeDTO {
+    type: string;
+}
 

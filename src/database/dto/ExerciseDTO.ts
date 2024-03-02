@@ -7,6 +7,7 @@ export interface ExerciseCreateRequestDTO {
     calories: number;
     user: string;
     workoutType: string[];
+    workout: string[];
 }
 
 export interface ExerciseResponseDTO {
@@ -20,4 +21,3 @@ export interface ExerciseResponseDTO {
 export interface WorkoutTypeDTO {
     type: string;
 }
-

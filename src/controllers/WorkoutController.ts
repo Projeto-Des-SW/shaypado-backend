@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { WorkoutService } from '../services/WorkoutService';
-import { Workout } from '../database/entities/Workout';
 import { WorkoutDTO } from '../database/dto/WorkoutDTO';
 
 const workoutService = new WorkoutService();
